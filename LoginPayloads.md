@@ -1,4 +1,4 @@
-```SQL
+```bash
 root' --
 root' #
 root'/*
