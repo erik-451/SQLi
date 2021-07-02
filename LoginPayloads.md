@@ -1,4 +1,4 @@
-```sql
+```SQL
 root' --
 root' #
 root'/*
