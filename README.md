@@ -159,7 +159,7 @@ Delay de 5 segundos:
 ```sql
 ')) or sleep(5)='
 ```
-Estos payloads se usan para testear si existe una inyeccion SQL dado que no suponen un riesgo para la base de datos.
+Estos payloads se usan para testear si existe una inyeccion SQL porque no suponen un riesgo para la base de datos.
 
 ```sql
 ')) or sleep(5)='
